@@ -74,18 +74,36 @@ Perbedaan `const` dan `final` dapat dilihat pada inisialisasi atau pemberian nil
     git remote add origin https://github.com/dreins/pbp-flutter-lab.git
 ```
 
-4. Menambahkan fungsi `_decrementCounter` dengan spesifikasi mengurangi counter seperti berikut 
+4. Menambahkan fungsi `_decrementCounter` dengan spesifikasi mengurangi counter sampai angka 0 seperti berikut 
 ```Dart
     void _decrementCounter() {
         setState(() {
-            _counter--;
+            if (_counter >= 1) {
+                _counter--;
+            }
         });
     }
 ```
 
-5. Menambahkan button `-` dengan cara menambahkan `children` pada widget `FloatingActionButton` 
+5. Menambahkan button `-` dengan cara menambahkan `children` pada widget `FloatingActionButton` dan memanggil widget `Row` dikarenakan tombol berada satu baris
 
-6. Menambahkan conditionals pada widget `Text` dan mengatur styling warna menggunakan conditionals
+6. Membuat `FloatingActionButton` baru dengan icon `remove` dan memanggil fungsi `_decrementCounter`
+```Dart
+    child: FloatingActionButton(
+        onPressed: _decrementCounter,
+        tooltip: 'Decrement',
+        child: const Icon(Icons.remove),
+    ),
+``` 
 
-7. ...
+7. Menambahkan conditionals pada widget `Text` dan mengatur styling warna menggunakan conditionals berdasarkan nilai dari counter (menggunakan operator modulo untuk ganjil dan genap dikarenakan 0 terhitung sebagai ganjil), yaitu
+```Dart
+    Text(
+        _counter % 2 == 1 ? "GANJIL" : "GENAP",
+        style: TextStyle(
+            color: _counter % 2 == 1 ? Colors.blue : Colors.redAccent),
+    ),
+```
+
+8. Menambahkan `Padding` kiri sebanyak 35 pada button `-` dan menambahkan pemisah di antara kedua button menggunakan widget `const Spacer()` 
 

@@ -39,7 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      if (_counter >= 1) {
+        _counter--;
+      }
     });
   }
 
@@ -67,10 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: Row(
         children: [
-          FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 35,
+            ),
+            child: FloatingActionButton(
+              onPressed: _decrementCounter,
+              tooltip: 'Decrement',
+              child: const Icon(Icons.remove),
+            ),
           ),
           const Spacer(),
           FloatingActionButton(
