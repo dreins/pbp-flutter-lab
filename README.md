@@ -1,4 +1,4 @@
-# PBP Tugas 7
+# PBP Tugas 8
 
 Nama : Davyn Reinhard Santoso
 
@@ -12,15 +12,8 @@ Kelas : PBP - C
 
 # Jawaban
 
-## 1. Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya.
-### A. Stateless widget
-Merupakan jenis widget dalam Flutter yang menampilkan desain antarmuka untuk pengguna aplikasi secara konkret, statis, dan tidak berubah - ubah
-
-### B. Stateful widget
-Merupakan kebalikan dari stateless widget, dimana stateful widget menampilkan desain antarmuka dengan secara dinamis dan berubah - ubah pada komponennya.
-
-### C. Perbedaan
-Perbedaan utama dari kedua jenis widget terletak pada konfigurasi perubahan desain antarmuka, dimana konfigurasi pada stateless widget akan diinisiasikan sejak awal dan tentunya akan bersifat statis, sedangkan stateless widget dapat diperbaharui kapanpun tergantung kepada perubahan data atau user actions. 
+## 1. Jelaskan perbedaan `Navigator.push` dan `Navigator.pushReplacement`
+Metode `push` digunakan untuk menambahkan rute atau page lain di atas page saat ini, sedangkan `pushReplacement` digunakan untuk menambahkan rute atau page dan juga menghapus page yang ada saat ini. 
 
 ## 2. Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
 - Class : Stateless Widget
@@ -50,60 +43,80 @@ Untuk mengatur layout agar widget memiliki posisi di tengah
 - Column
 Untuk mengatur layout dalam format kolom, yaitu menurun secara vertikal
 
+- Row
+Untuk mengatur layout dalam format kolom, yaitu menurun secara horizontal
+
 - Text
 Untuk membuat objek berupa teks yang dapat ditampilkan pada program
 
 - FloatingActionButton
 Untuk membuat objek berupa button yang dapat menambahkan counter dan mengurangi counter
 
-## 3. Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
-Dalam program ini, `setState()` digunakan pada fungsi yang menambahkan dan mengurangi counter. Pada dasarnya, `setState()` berfungsi untuk menginformasikan widget bahwa terdapat perubahan pada suatu objek yang berubah pada State, sehingga aplikasi dapat melakukan reload ulang terhadap perubahan widget. Variabel yang dapat terdampak pada program ini adalah variabel `counter`, dimana penambahan ataupun pengurangan counter dideklarasikan di dalam fungsi `setState()`. Hal ini juga menjadi alasan mengapa `setState()` hanya dapat digunakan pada Stateful Widget, yaitu jenis widget yang dinamis
+- Padding
+Untuk memberikan jarak antar elemen widget
 
-## 4. Jelaskan perbedaan antara const dengan final.
-Perbedaan `const` dan `final` dapat dilihat pada inisialisasi atau pemberian nilai variabel, dimana const harus diinisialisasikan pada saat kompilasi, atau pemberiannya dilakukan secara langsung atau eksplisit saat mendeklarasikan variabel. Nilai const bersifat konstan. Final sendiri tidak mengharuskan inisialisasi secara langsung saat deklarasinya. Jadi, nilai const akan diketahui saat compilation time dan final saat run time. 
+- Drawer
+Untuk membuat fitur navigasi menuju page lain
+
+- Form
+Untuk mempermudah proses pembuatan dalam fitur Form yang menerima input dari pengguna
+
+- TextFormField
+Untuk membuat objek berupa input field
+
+- ElevatedButton
+Untuk membuat objek berupa button yang digunakan untuk menyimpan input dalam list
+
+- DropdownButton
+Untuk membuat objek berupa pemilihan opsi dalam fitur dropdown
+
+- ListView.builder
+Untuk melakukan iterasi pada widget list
+
+- ListTile
+Untuk membuat objek - objek yang dibutuhkan pada Drawer
+
+## 3. Sebutkan jenis-jenis event yang ada pada Flutter.
+- `onPressed`
+- `onTap`
+- `onChanged`
+- `onSaved`
+
+## 4. Jelaskan bagaimana cara kerja `Navigator` dalam "mengganti" halaman dari aplikasi Flutter.
+`Navigator` bekerja dengan cara menampilkan page yang menjadi elemen teratas dengan konsep stack dalam hal routingnya dan memperhatikan method yang digunakan pada objek `Navigator` seperti `Navigator.push` dan `Navigator.pushReplacement`. Untuk melakukan prosesnya, `BuildContext` pada widget `build` akan melakukan penyimpanan rute dan mendeteksi methodnya. 
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
-1. Membuat folder pada local sebagai tempat untuk menaruh seluruh dokumen aplikasi
+1. Membuat folder pada aplikasi `counter_7` untuk membagi models dan page
 
-2. Membuat program berbasis Flutter dengan cara menjalankan perintah `CTRL + Shift + P`, lalu memilih fitur `Flutter : New Project` dan memberi nama project seperti berikut
-    `counter_7`
+2. Menambahkan file `add_budget.dart`, `counter_7.dart`, `show_budget.dart`, `appdrawer.dart`, dan `budget.dart` sebagai models budget.
 
-3. Menyambungkan dengan github dengan perintah berikut didahului dengan membuat repo dengan nama `pbp-flutter-lab`
-```bash
-    git init
-    git remote add origin https://github.com/dreins/pbp-flutter-lab.git
-```
+3. Menambahkan `Drawer` pada file `appdrawer.dart` dan melakukan routing dengan memanggil classnya pada tiap - tiap page terkait
 
-4. Menambahkan fungsi `_decrementCounter` dengan spesifikasi mengurangi counter sampai angka 0 seperti berikut 
+4. Menambahkan models pada file  `budget.dart` 
 ```Dart
-    void _decrementCounter() {
-        setState(() {
-            if (_counter >= 1) {
-                _counter--;
-            }
+    class BudgetDetails {
+        final String judul;
+        final int nominal;
+        final String jenisBudget;
+        final DateTime tanggalTransaksi;
+
+    BudgetDetails({
+        required this.judul,
+        required this.nominal,
+        required this.jenisBudget,
+        required this.tanggalTransaksi,
         });
     }
 ```
 
-5. Menambahkan button `-` dengan cara menambahkan `children` pada widget `FloatingActionButton` dan memanggil widget `Row` dikarenakan tombol berada satu baris
+5. Menambahkan implementasi `Form` dan `TextFormField` pada file `add_budget.dart` ditambahkan dengan implementasi `DropdownButton` untuk memilih jenis budget dan `ElevatedButton` dengan action listener untuk menyimpan budget ke dalam list
 
-6. Membuat `FloatingActionButton` baru dengan icon `remove` dan memanggil fungsi `_decrementCounter`
+dengan cara menambahkan `children` pada widget `FloatingActionButton` dan memanggil widget `Row` dikarenakan tombol berada satu baris
+
+6. Membuat list bernama `detailBudget` dengan tipe class `BudgetDetails` dan memanggilnya pada constructor class utama pada tiap - tiap file 
 ```Dart
-    child: FloatingActionButton(
-        onPressed: _decrementCounter,
-        tooltip: 'Decrement',
-        child: const Icon(Icons.remove),
-    ),
+   final List<BudgetDetails> detailBudget;
 ``` 
 
-7. Menambahkan conditionals pada widget `Text` dan mengatur styling warna menggunakan conditionals berdasarkan nilai dari counter (menggunakan operator modulo untuk ganjil dan genap dikarenakan 0 terhitung sebagai ganjil), yaitu
-```Dart
-    Text(
-        _counter % 2 == 1 ? "GANJIL" : "GENAP",
-        style: TextStyle(
-            color: _counter % 2 == 1 ? Colors.blue : Colors.redAccent),
-    ),
-```
-
-8. Menambahkan `Padding` kiri sebanyak 35 pada button `-` dan menambahkan pemisah di antara kedua button menggunakan widget `const Spacer()` 
+7. Menambahkan kode pada widget `ElevatedButton` untuk menyimpan objek yang diinput oleh pengguna dengan perintah `widget.detailBudget.add(budget)` dan menampilkan tiap - tiap objek pada page milik `show_budget.dart` dengan menggunakan widget `ListView.builder` untuk melakukan iterasi tiap - tiap objek
 
