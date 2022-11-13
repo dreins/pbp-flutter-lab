@@ -111,8 +111,6 @@ Untuk membuat objek - objek yang dibutuhkan pada Drawer
 
 5. Menambahkan implementasi `Form` dan `TextFormField` pada file `add_budget.dart` ditambahkan dengan implementasi `DropdownButton` untuk memilih jenis budget dan `ElevatedButton` dengan action listener untuk menyimpan budget ke dalam list
 
-dengan cara menambahkan `children` pada widget `FloatingActionButton` dan memanggil widget `Row` dikarenakan tombol berada satu baris
-
 6. Membuat list bernama `detailBudget` dengan tipe class `BudgetDetails` dan memanggilnya pada constructor class utama pada tiap - tiap file 
 ```Dart
    final List<BudgetDetails> detailBudget;
