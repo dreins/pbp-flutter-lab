@@ -1,5 +1,6 @@
 import 'package:counter_7/appdrawer.dart';
 import 'package:counter_7/pages/counter_7.dart';
+import 'package:intl/intl.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class _AddBudgetState extends State<AddBudget> {
   int _nominal = 0;
   String? jenisBudget;
   List<String> listJenisBudget = ['Pemasukan', 'Pengeluaran'];
+  DateTime _dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +116,27 @@ class _AddBudgetState extends State<AddBudget> {
                       jenisBudget = newValue!;
                     });
                   }),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.calendar_month_outlined),
+                    const SizedBox(width: 3.0),
+                    TextButton(
+                      onPressed: (() {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2022),
+                          lastDate: DateTime(2030),
+                        );
+                      }),
+                      child: Text(DateFormat.MMMMEEEEd().format(_dateTime)),
+                    ),
+                  ],
+                ),
+              ),
               Expanded(child: Container()),
               ElevatedButton(
                   onPressed: () {
@@ -122,7 +145,7 @@ class _AddBudgetState extends State<AddBudget> {
                       BudgetDetails budget = BudgetDetails(
                         judul: _judulBudget,
                         nominal: _nominal,
-                        tanggalTransaksi: DateTime.now(),
+                        tanggalTransaksi: _dateTime,
                         jenisBudget: jenisBudget!,
                       );
                       widget.detailBudget.add(budget);

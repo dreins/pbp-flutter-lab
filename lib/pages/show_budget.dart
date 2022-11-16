@@ -1,6 +1,7 @@
 import 'package:counter_7/appdrawer.dart';
 import 'package:counter_7/models/budget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ShowBudget extends StatelessWidget {
   const ShowBudget({super.key, required this.detailBudget});
@@ -36,6 +37,15 @@ class ShowBudget extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 24,
                                   color: Colors.black,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text(
+                                DateFormat.MMMMEEEEd().format(detailBudget[index].tanggalTransaksi),
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 94, 91, 91),
+                                  fontStyle: FontStyle.italic
                                 ),
                               ),
                             ],
@@ -49,15 +59,15 @@ class ShowBudget extends StatelessWidget {
                               Text(
                                 '${detailBudget[index].nominal}',
                                 style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   color: Colors.black,
                                 ),
                               ),
                               Text(
                                 detailBudget[index].jenisBudget,
                                 style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 69, 68, 68),
                                 ),
                               ),
                             ],
