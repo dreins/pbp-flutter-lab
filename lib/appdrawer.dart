@@ -1,7 +1,9 @@
+import 'package:counter_7/models/mywatchlist.dart';
 import 'package:counter_7/pages/add_budget.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/pages/counter_7.dart';
 import 'package:counter_7/pages/show_budget.dart';
+import 'package:counter_7/pages/show_watchlist.dart';
 import 'package:flutter/material.dart';
 
 import 'models/budget.dart';
@@ -54,6 +56,18 @@ class AppDrawer extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) =>
                           ShowBudget(detailBudget: detailBudget)),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('My Watch List'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          MyWatchlistPage(detailBudget: detailBudget)),
                 );
               },
             ),
