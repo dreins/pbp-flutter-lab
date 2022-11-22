@@ -3,8 +3,6 @@ import 'package:counter_7/models/budget.dart';
 import 'package:counter_7/models/mywatchlist.dart';
 import 'package:counter_7/pages/show_watchlist.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class MyWatchlistDetails extends StatefulWidget {
   const MyWatchlistDetails(
@@ -22,7 +20,7 @@ class _MyWatchlistDetailsState extends State<MyWatchlistDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Watch List'),
+        title: const Text('Detail'),
       ),
       drawer: AppDrawer(detailBudget: widget.detailBudget),
       body: Column(children: [
